@@ -1,0 +1,29 @@
+
+@baseUrl = Http://localhost:3000
+
+# Recados
+
+###
+GET {{baseUrl}}/recados/
+###
+GET {{baseUrl}}/recados/1/
+
+### Exemplo de Rota
+
+# @name ExemplodeRota
+GET  {{baseUrl}}/home/exemplo/
+
+### AppControllerGetHello
+
+# @name AppControllerGetHello
+GET  {{baseUrl}}/home/hello/
+
+### Conceitos Manual Controller Home
+
+# @name ConceitosManualControllerHome
+GET  {{baseUrl}}/conceitos-manual/
+
+### Conceitos Automatico Controller Home
+
+# @name ConceitosAutomaticoControllerHome
+GET  {{baseUrl}}/conceitos-automatico/
