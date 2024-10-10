@@ -6,8 +6,7 @@ export class AppService {
     return 'Hello World!';
   }
 
-  solucionaExemplo(){
-
-    return'exemplo usa o service';
+  solucionaExemplo() {
+    return 'exemplo usa o service';
   }
 }
