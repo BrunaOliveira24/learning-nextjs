@@ -1,5 +1,5 @@
 export class Recado {
-    id:number;
+    id:number; 
     texto: string;
     de: string;
     para: string;

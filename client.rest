@@ -6,7 +6,7 @@
 ### lista apenas um recado
 GET {{baseUrl}}/recados/
 ###
-GET {{baseUrl}}/recados/1/
+GET {{baseUrl}}/recados/2/
 ###Criar um recado
 POST {{baseUrl}}/recados/
 Content-Type: application/json
@@ -20,7 +20,6 @@ Content-Type: application/json
   }
 ### Atualizar Recado
 PATCH {{baseUrl}}/recados/1/
-PATCH {{baseUrl}}/recados/2/
 Content-Type: application/json
 
  {

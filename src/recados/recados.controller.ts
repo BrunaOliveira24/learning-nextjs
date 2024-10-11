@@ -7,7 +7,10 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+
 import { RecadosService } from './recados.service';
+import { CreateRecadoDto } from './DTO/create-recado.dto';
+import { UpdateRecadoDto } from './DTO/update-recado.dto';
 
 @Controller('recados')
 export class RecadosController {
@@ -25,17 +28,17 @@ export class RecadosController {
   }
 
   @Post()
-  create(@Body() body: any) {
-    return this.recadosService.create(body);
+  create(@Body() createRecadoDto: CreateRecadoDto) {
+    return this.recadosService.create(createRecadoDto);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() body: any) {
-    this.recadosService.update(id, body);
+  update(@Param('id') id: string, @Body() updateRecadoDto: UpdateRecadoDto) {
+   return this.recadosService.update(id, updateRecadoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    this.recadosService.remove(id);
+    return this.recadosService.remove(id);
   }
 }

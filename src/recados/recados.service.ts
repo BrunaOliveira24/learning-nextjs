@@ -1,5 +1,7 @@
-import { Body, Injectable } from '@nestjs/common';
+import { Body, HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { Recado } from './Entities/recados.entitiy';
+import { CreateRecadoDto } from './DTO/create-recado.dto';
+import { UpdateRecadoDto } from './DTO/update-recado.dto';
 
 @Injectable()
 export class RecadosService {
@@ -20,36 +22,51 @@ export class RecadosService {
     }
 
     findOne(id: string){
-        return this.recados.find(item => item.id === +id);
+       const recado = this.recados.find(item => item.id === +id);
 
+       if (recado) return recado;
+
+       //throw new HttpException('Recado nao encontrado', HttpStatus.NOT_FOUND);
+        throw new NotFoundException('Recado nao encontrado');
+    
     }
 // criar um novo recado com id 
-    create(body: any){
+    create(createRecadoDto: CreateRecadoDto){
         this.lastId++;
         const id = this.lastId;
         const newRecado = {
             id,
-            ...body,
+            ...createRecadoDto,
+            lido: false,
+            data: new Date(),
         };
         this.recados.push(newRecado);
 
         return newRecado;
     }
 
-    update(id: string, body: any){
+    update(id: string, updateRecadoDto: UpdateRecadoDto){
         const recadoExistenteIndex = this.recados.findIndex(
             intem => intem.id === +id,
         );
+
+        if(recadoExistenteIndex < 0){
+            this.trowNotFoundError();
+            
+        }
         if(recadoExistenteIndex >=0){
             const recadoExistente = this.recados[recadoExistenteIndex]
         
             this.recados[recadoExistenteIndex] = {
                 ... recadoExistente,
-                ...body,
+                ...updateRecadoDto,
         
             }   
         
         };
+    }
+    trowNotFoundError() {
+        throw new Error('Method not implemented.');
     }
 
     remove(id: string){
@@ -57,9 +74,13 @@ export class RecadosService {
             item => item.id === +id,
         );
 
-        if(recadoExistenteIndex >= 0){
-            this.recados.splice(recadoExistenteIndex, 1);
+        if(recadoExistenteIndex < 0){
+            this.trowNotFoundError();
+            
         }
+        const recado = this.recados[recadoExistenteIndex];
+        this.recados.splice(recadoExistenteIndex, 1);
+        return recado;
 
     }
 }
