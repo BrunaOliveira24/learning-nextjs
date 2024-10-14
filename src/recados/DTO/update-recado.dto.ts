@@ -8,5 +8,6 @@ export class UpdateRecadoDto extends PartialType(CreateRecadoDto) {
     @MinLength(5)
     @MaxLength(255)
     readonly texto: string;
+    lido: any;
 }
 

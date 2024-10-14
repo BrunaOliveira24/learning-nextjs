@@ -4,34 +4,56 @@
 # Recados
 
 ### lista apenas um recado
-GET {{baseUrl}}/recados/
+GET {{baseUrl}}/recados/6/
 ###
-GET {{baseUrl}}/recados/2/
+GET {{baseUrl}}/recados/
 ###Criar um recado
 POST {{baseUrl}}/recados/
 Content-Type: application/json
 
   {
-    "texto": "Novo recado",
+    "texto": "2 Novo recado",
     "de": "Bruna",
-    "para": "Kelven",
-    "lido": false,
-    "data": "2024-10-10T16:55:32.910Z"
+    "para": "Kelven"
+    
   }
 ### Atualizar Recado
-PATCH {{baseUrl}}/recados/1/
+PATCH {{baseUrl}}/recados/8/
 Content-Type: application/json
 
- {
-    "texto": "atualizar recado",
-    "de": "Bruna",
-    "para": "Kelven",
-    "lido": false,
-    "data": "2024-10-10T16:55:32.910Z"
-  }
+{
+  "texto": "recado atualizado"
+ 
+}
 
 ### apaga um recado
-DELETE {{baseUrl}}/recados/2/
+DELETE {{baseUrl}}/recados/5/
+
+
+#
+
+
+# Pessoas
+### Lista todas as pessoas
+GET {{baseUrl}}/pessoas/
+?limit=10
+&offset=0
+### Lista apenas uma pessoa
+GET {{baseUrl}}/pessoas/3/
+### Cria uma pessoa
+POST {{baseUrl}}/pessoas/
+Content-Type: application/json
+{
+    "texto": "email1@email.com",
+    "de": "123456",
+    "para": "Luiz"
+}
+
+
+
+
+
+
 
 ### Exemplo de Rota
 
