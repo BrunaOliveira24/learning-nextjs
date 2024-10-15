@@ -43,11 +43,24 @@ GET {{baseUrl}}/pessoas/3/
 ### Cria uma pessoa
 POST {{baseUrl}}/pessoas/
 Content-Type: application/json
+
 {
-    "texto": "email1@email.com",
-    "de": "123456",
-    "para": "Luiz"
+    "email": "oli.bruna01@gmail.com",
+    "password": "2424724",
+    "nome": "Bruna"
 }
+### Atualizar Pessoa
+PATCH {{baseUrl}}/pessoas/6/
+Content-Type: application/json
+
+{
+    "password":"242526",
+    "nome":"Kelven"
+ 
+}
+
+### apaga a pessoa
+DELETE {{baseUrl}}/pessoas/3/
 
 
 

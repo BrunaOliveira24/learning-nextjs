@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreatePessoaDto } from './dto/create-pessoa.dto';
 import { UpdatePessoaDto } from './dto/update-pessoa.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -11,31 +11,70 @@ export class PessoasService {
     @InjectRepository(Pessoa)
     private readonly pessoaRepository: Repository<Pessoa>,
   ){}
+
   async create(createPessoaDto: CreatePessoaDto) {
-    const dadosData = {
+    
+    try{
+    const dadosPessoa = {
       nome: createPessoaDto.nome,
-      passwordHas:  createPessoaDto.password,
+      passwordHash:  createPessoaDto.password,
       email: createPessoaDto.email,
     };
 
-    const novaPessoa = this.pessoaRepository.create(dadosData);
+    const novaPessoa = this.pessoaRepository.create(dadosPessoa);
     await this.pessoaRepository.save(novaPessoa)
     return novaPessoa;
+  } catch (error) {
+      if (error.code ==='23505'){
+        throw new ConflictException('E-mail ja esta cadastrado.');
+      }
+
+      throw error;
+  
+    }
+
   }
+
 
   findAll() {
     return `This action returns all pessoas`;
   }
 
+  
+
   findOne(id: number) {
     return `This action returns a #${id} pessoa`;
   }
 
-  update(id: number, updatePessoaDto: UpdatePessoaDto) {
-    return `This action updates a #${id} pessoa`;
+
+
+  async update(id: number, updatePessoaDto: UpdatePessoaDto) {
+    const dadosPessoa = {
+      nome: updatePessoaDto?.nome,
+      passwordHash: updatePessoaDto.password,
+    };
+
+    const pessoa = await this.pessoaRepository.preload({
+      id,
+      ...dadosPessoa,
+    });
+
+    if(!pessoa){
+      throw new NotFoundException('Pessoa não encontrada');
+    }
+      return this.pessoaRepository.save(pessoa);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} pessoa`;
+
+
+ async remove(id: number) {
+   const person = await this.pessoaRepository.findOneBy({
+    id
+   })
+   if(!person){
+    throw new NotFoundException('Pessoa nao encontrada');
+   }
+
+   return this.pessoaRepository.remove(person);
   }
 }

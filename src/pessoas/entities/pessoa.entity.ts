@@ -1,12 +1,13 @@
 import { IsEmail } from "class-validator";
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Recado } from "src/recados/Entities/recados.entitiy";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class Pessoa {
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ unique: true })
     @IsEmail()
     email: string;
 
@@ -21,4 +22,14 @@ export class Pessoa {
 
     @UpdateDateColumn()
     updatedAt? : Date;
+
+
+    //Uma pessoa pode ter enviado muitos recados (como 'de')
+    //esses recados sao relacionados ao campo 'de' na entidade.
+    @OneToMany(()=>Recado, recado => recado.de)
+    recadosEnviados: Recado[]
+
+    @OneToMany(()=>Recado, recado => recado.para)
+    recadosRecebidos: Recado[]
+
 }
