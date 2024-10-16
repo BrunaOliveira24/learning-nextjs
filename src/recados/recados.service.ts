@@ -77,14 +77,14 @@ export class RecadosService {
         const de = await this.pessoasService.findOne(deId);
 //Encontrar a pessoa para quem o recado esta sendo enviado
         const para = await this.pessoasService.findOne(paraId);
- 
-           const newRecado = {
+        const newRecado = {
           texto: createRecadoDto.texto,
-            de,
-            para,
-            lido: false,
-            data: new Date(),
+          de,
+          para,
+          lido: false,
+          data: new Date(),
         };
+          
         const recado = await this.recadoRepository.create(newRecado);
         await this.recadoRepository.save(recado);
     return {

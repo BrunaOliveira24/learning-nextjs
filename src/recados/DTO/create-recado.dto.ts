@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsPositive, IsString, MaxLength, MinLength } from "class-validator";
+import { IsNotEmpty, IsPositive, IsString, MaxLength, MinLength } from "class-validator";
 
 export class CreateRecadoDto 
 {
@@ -13,6 +13,5 @@ export class CreateRecadoDto
 
     @IsPositive()
     paraId: number;
-
  
 }

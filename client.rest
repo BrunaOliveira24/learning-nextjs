@@ -13,8 +13,8 @@ Content-Type: application/json
 
   {
     "texto": "2 Novo recado",
-    "de": "Bruna",
-    "para": "Kelven"
+    "deId": 6,
+    "paraId": 4
     
   }
 ### Atualizar Recado
@@ -45,7 +45,7 @@ POST {{baseUrl}}/pessoas/
 Content-Type: application/json
 
 {
-    "email": "oli.bruna01@gmail.com",
+    "email": "oli.bruna04@gmail.com",
     "password": "2424724",
     "nome": "Bruna"
 }

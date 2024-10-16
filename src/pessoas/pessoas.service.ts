@@ -12,6 +12,10 @@ export class PessoasService {
     private readonly pessoaRepository: Repository<Pessoa>,
   ){}
 
+  throwNotFoundError(){
+    throw new NotFoundException('Pessoa nao encontrada');
+ }
+
   async create(createPessoaDto: CreatePessoaDto) {
     
     try{
@@ -42,10 +46,17 @@ export class PessoasService {
 
   
 
-  findOne(id: number) {
-    return `This action returns a #${id} pessoa`;
-  }
+  async findOne(id: number){
+    // const recado = this.recados.find(item => item.id === +id);
+       const pessoa = await this.pessoaRepository.findOneBy({
+        id,
+       });
 
+     if (!pessoa){
+      throw new NotFoundException('Pessoa nao encontrada');
+     }
+     return pessoa;
+  }
 
 
   async update(id: number, updatePessoaDto: UpdatePessoaDto) {
