@@ -6,7 +6,7 @@ export class CreateRecadoDto
     @IsNotEmpty()
     @MinLength(5)
     @MaxLength(255)
-    readonly texto: string;
+    texto: string;
 
     @IsPositive()
     deId: number;

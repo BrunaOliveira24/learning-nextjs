@@ -17,15 +17,14 @@ import { RecadosService } from './recados.service';
 import { CreateRecadoDto } from './DTO/create-recado.dto';
 import { UpdateRecadoDto } from './DTO/update-recado.dto';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
-import { AddHeaderInterceptor } from 'src/common/interceptors/add-hader.interceptor';
-import { TimingConnectionInterceptor } from 'src/common/interceptors/timing-connection.interceptor';
-import { ErrorHandlingInterceptor } from 'src/common/interceptors/error-handling.interceptor';
+
+
 
 @Controller ('recados')
 export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
 
-  @UseInterceptors(TimingConnectionInterceptor, ErrorHandlingInterceptor)
+
   @HttpCode(HttpStatus.OK)
   @Get()
   async findAll(@Query() PaginationDto: PaginationDto) {
@@ -35,7 +34,7 @@ export class RecadosController {
     return  recados;
 
   }
-  @UseInterceptors(AddHeaderInterceptor, ErrorHandlingInterceptor)
+
   @Get(':id')
   findOnde(@Param ('id') id:string)  {
     return this.recadosService.findOne(+id);

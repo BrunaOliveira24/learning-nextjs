@@ -4,21 +4,23 @@
 # Recados
 
 ### lista apenas um recado
-GET {{baseUrl}}/recados/6/
+GET {{baseUrl}}/recados/24/
 ###
 GET {{baseUrl}}/recados/
+?limit=10
+&offset=0
 ###Criar um recado
 POST {{baseUrl}}/recados/
 Content-Type: application/json
 
-  {
-    "texto": "2 Novo recado",
-    "deId": 6,
-    "paraId": 4
-    
-  }
+{
+  "texto": "de BRUNA PARA KELVEN",
+  "deId": 4,
+  "paraId": 6
+}
+
 ### Atualizar Recado
-PATCH {{baseUrl}}/recados/8/
+PATCH {{baseUrl}}/recados/24/
 Content-Type: application/json
 
 {
@@ -45,8 +47,8 @@ POST {{baseUrl}}/pessoas/
 Content-Type: application/json
 
 {
-    "email": "oli.bruna04@gmail.com",
-    "password": "2424724",
+    "email": "oli.bruna06@gmail.com",
+    "password": "23505",
     "nome": "Bruna"
 }
 ### Atualizar Pessoa
