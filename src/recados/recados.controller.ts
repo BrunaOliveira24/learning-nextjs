@@ -17,9 +17,10 @@ import { RecadosService } from './recados.service';
 import { CreateRecadoDto } from './DTO/create-recado.dto';
 import { UpdateRecadoDto } from './DTO/update-recado.dto';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
+import { AddHeaderInterceptor } from 'src/common/interceptors/add-hader.interceptor';
 
 
-
+@UseInterceptors(AddHeaderInterceptor)
 @Controller ('recados')
 export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}

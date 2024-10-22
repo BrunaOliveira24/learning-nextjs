@@ -9,14 +9,15 @@ GET {{baseUrl}}/recados/24/
 GET {{baseUrl}}/recados/
 ?limit=10
 &offset=0
+Authorization: 'Bearer TokemUsuario'
 ###Criar um recado
 POST {{baseUrl}}/recados/
 Content-Type: application/json
 
 {
-  "texto": "de BRUNA PARA KELVEN",
-  "deId": 4,
-  "paraId": 6
+  "texto": "pode ser vazia",
+  "deId": 6,
+  "paraId": 8
 }
 
 ### Atualizar Recado
@@ -41,7 +42,7 @@ GET {{baseUrl}}/pessoas/
 ?limit=10
 &offset=0
 ### Lista apenas uma pessoa
-GET {{baseUrl}}/pessoas/3/
+GET {{baseUrl}}/pessoas/8/
 ### Cria uma pessoa
 POST {{baseUrl}}/pessoas/
 Content-Type: application/json
@@ -52,7 +53,7 @@ Content-Type: application/json
     "nome": "Bruna"
 }
 ### Atualizar Pessoa
-PATCH {{baseUrl}}/pessoas/6/
+PATCH {{baseUrl}}/pessoas/8/
 Content-Type: application/json
 
 {

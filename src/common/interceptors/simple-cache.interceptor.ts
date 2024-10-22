@@ -2,10 +2,11 @@
 
 import { CallHandler, 
   ExecutionContext, 
+  Injectable, 
   NestInterceptor } from '@nestjs/common';
 import { of, tap } from 'rxjs';
 
-
+@Injectable()
 export class SimpleCacheInterceptor implements NestInterceptor {
   private readonly cache = new Map();
 
@@ -19,6 +20,7 @@ export class SimpleCacheInterceptor implements NestInterceptor {
       return of(this.cache.get(url));
     }
 
+    await new Promise(resolve => setTimeout(resolve, 3000));
 
     return next.handle().pipe(
       tap(data => {

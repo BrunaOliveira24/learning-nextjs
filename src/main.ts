@@ -4,6 +4,8 @@ import { ParseIntPipe, ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  
+
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true, //remove chaves que estao na DTO
     forbidNonWhitelisted: true, 

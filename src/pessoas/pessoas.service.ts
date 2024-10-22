@@ -29,7 +29,7 @@ export class PessoasService {
     await this.pessoaRepository.save(novaPessoa)
     return novaPessoa;
   } catch (error) {
-      if (error.code ==='23505'){
+      if (error.code === '23505'){
         throw new ConflictException('E-mail ja esta cadastrado.');
       }
 
