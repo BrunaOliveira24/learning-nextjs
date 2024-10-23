@@ -17,7 +17,9 @@ POST {{baseUrl}}/recados/
 Content-Type: application/json
 
 {
-  "texto": "ola"
+  "texto": "15448",
+  "deId": 6,
+  "paraId": 8
 }
 
 ### Atualizar Recado

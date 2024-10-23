@@ -14,6 +14,6 @@ export class ParseIntPipe implements PipeTransform{
         if(parsedValue < 0){
             throw new BadRequestException('ParseIntIdPipe espera um numero maior do que zero')
         }
-        return parsedValue;
+        return value;
     } 
 }
