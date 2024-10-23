@@ -4,20 +4,20 @@
 # Recados
 
 ### lista apenas um recado
-GET {{baseUrl}}/recados/24/
+GET {{baseUrl}}/recados/
+
 ###
 GET {{baseUrl}}/recados/
 ?limit=10
 &offset=0
 Authorization: 'Bearer TokemUsuario'
+
 ###Criar um recado
 POST {{baseUrl}}/recados/
 Content-Type: application/json
 
 {
-  "texto": "pode ser vazia",
-  "deId": 6,
-  "paraId": 8
+  "texto": "ola"
 }
 
 ### Atualizar Recado

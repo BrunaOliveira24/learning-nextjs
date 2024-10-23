@@ -11,8 +11,9 @@ async function bootstrap() {
     forbidNonWhitelisted: true, 
     transform: false
   }),
-  new ParseIntPipe(),
-);
+    new ParseIntPipe(),
+  );
+
   await app.listen(3000);
 }
 bootstrap();

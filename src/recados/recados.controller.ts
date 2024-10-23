@@ -25,14 +25,12 @@ import { AddHeaderInterceptor } from 'src/common/interceptors/add-hader.intercep
 export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
 
-
-  @HttpCode(HttpStatus.OK)
   @Get()
   async findAll(@Query() PaginationDto: PaginationDto) {
 
-    // return ' retorna todos os recados.';
-    const recados = await this.recadosService.findAll(PaginationDto);
-    return  recados;
+    return 'retorna todos os recados.';
+    // const recados = await this.recadosService.findAll();
+    // return  recados;
 
   }
 
@@ -43,7 +41,9 @@ export class RecadosController {
 
   @Post()
   create(@Body() createRecadoDto: CreateRecadoDto) {
-    return this.recadosService.create(createRecadoDto);
+    console.log('Estou na rota')
+    return {}
+    // return this.recadosService.create(createRecadoDto);
   }
 
   @Patch(':id')

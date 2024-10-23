@@ -22,12 +22,12 @@ export class RecadosService {
     }
     
 
-    async findAll(paginationDto?: PaginationDto){
-      const { limit = 10, offset = 0 } = paginationDto;
+    async findAll(){
+      //const { limit = 10, offset = 0 } = paginationDto;
 
       const recados = await this.recadoRepository.find({
-        take: limit, // quantos registros serão exibidos (por página)
-        skip: offset, // quantos registros devem ser pulados
+        take: 10, // quantos registros serão exibidos (por página)
+        skip: 0, // quantos registros devem ser pulados
         // relations: ['de', 'para'],
             relations: ['de', 'para'],
             order: {
@@ -43,7 +43,8 @@ export class RecadosService {
                 nome: true,
               },
             },
-          });
+          },
+        );
       return recados;
     }
 
