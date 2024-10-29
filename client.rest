@@ -3,10 +3,10 @@
 
 # Recados
 
-### lista apenas um recado
+### lista todos os recados
 GET {{baseUrl}}/recados/
 
-###
+### lista apenas um recado
 GET {{baseUrl}}/recados/
 ?limit=10
 &offset=0
@@ -35,7 +35,7 @@ Content-Type: application/json
 DELETE {{baseUrl}}/recados/5/
 
 
-#
+##############################################
 
 
 # Pessoas
@@ -50,7 +50,7 @@ POST {{baseUrl}}/pessoas/
 Content-Type: application/json
 
 {
-    "email": "oli.bruna234@gmail.com",
+    "email": "oli.bruna24@gmail.com",
     "password": "23505",
     "nome": "Bruna"
 }
@@ -67,6 +67,34 @@ Content-Type: application/json
 ### apaga a pessoa
 DELETE {{baseUrl}}/pessoas/3/
 
+
+
+
+
+
+
+#
+
+
+# AUTH
+### Lista todas as pessoas
+POST {{baseUrl}}/auth/
+Content-Type: application/json
+
+{
+     "email": "oli.bruna24@gmail.com",
+    "password": "23505"
+}
+
+
+
+
+
+
+
+
+
+#
 
 
 
