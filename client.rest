@@ -50,7 +50,7 @@ POST {{baseUrl}}/pessoas/
 Content-Type: application/json
 
 {
-    "email": "oli.bruna30@gmail.com",
+    "email": "oli.bruna234@gmail.com",
     "password": "23505",
     "nome": "Bruna"
 }
