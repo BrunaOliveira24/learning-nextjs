@@ -1,6 +1,6 @@
 
 @baseUrl = Http://localhost:3000
-
+@authToken = {{authenticate.response.body.accessToken}}
 # Recados
 
 ### lista todos os recados
@@ -10,7 +10,7 @@ GET {{baseUrl}}/recados/
 GET {{baseUrl}}/recados/
 ?limit=10
 &offset=0
-Authorization: 'Bearer TokemUsuario'
+Authorization: Bearer {{authToken}}
 
 ###Criar um recado
 POST {{baseUrl}}/recados/
@@ -43,6 +43,7 @@ DELETE {{baseUrl}}/recados/5/
 GET {{baseUrl}}/pessoas/
 ?limit=10
 &offset=0
+Authorization: Bearer {{authToken}}
 ### Lista apenas uma pessoa
 GET {{baseUrl}}/pessoas/8/
 ### Cria uma pessoa
@@ -50,7 +51,7 @@ POST {{baseUrl}}/pessoas/
 Content-Type: application/json
 
 {
-    "email": "oli.bruna24@gmail.com",
+    "email": "oli.bruna33@gmail.com",
     "password": "23505",
     "nome": "Bruna"
 }
@@ -78,11 +79,12 @@ DELETE {{baseUrl}}/pessoas/3/
 
 # AUTH
 ### Lista todas as pessoas
+# @name authenticate
 POST {{baseUrl}}/auth/
 Content-Type: application/json
 
 {
-     "email": "oli.bruna24@gmail.com",
+     "email": "oli.bruna33@gmail.com",
     "password": "23505"
 }
 
