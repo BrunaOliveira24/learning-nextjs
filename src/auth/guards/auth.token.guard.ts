@@ -1,7 +1,6 @@
 import { CanActivate, ExecutionContext, Inject, Injectable, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { Request } from "express";
-import { Observable } from "rxjs";
 import jwtConfig from "../config/jwt.config";
 import { ConfigType } from "@nestjs/config";
 import { REQUEST_TOKEN_PAYLOAD_KEY } from "../auth.constants";
@@ -17,12 +16,13 @@ export class AuthTokenGuard implements CanActivate {
     async canActivate(
         context: ExecutionContext
     ):  Promise<boolean> {
-        const request: Request = context.switchToHttp().getRequest()
+        const request: Request = context.switchToHttp().getRequest();
         const token = this.extractTokenFromHeader(request);
 
         if(!token){
-            throw new UnauthorizedException('Lão foi logado');
+            throw new UnauthorizedException('Não foi logado');
         }
+
        try{
         const payload = await this.jwtService.verifyAsync(
             token,
@@ -31,7 +31,7 @@ export class AuthTokenGuard implements CanActivate {
 
           request [REQUEST_TOKEN_PAYLOAD_KEY] = payload;
         } catch (error) {
-            throw new UnauthorizedException('Falha ao logar!!!')
+            throw new UnauthorizedException(error.message);
         }
 
         return true;

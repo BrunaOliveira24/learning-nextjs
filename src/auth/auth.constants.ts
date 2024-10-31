@@ -1,1 +1,1 @@
-export const REQUEST_TOKEN_PAYLOAD_KEY = 'tolenPAyLoad';
+export const REQUEST_TOKEN_PAYLOAD_KEY = 'tokenPayLoad';

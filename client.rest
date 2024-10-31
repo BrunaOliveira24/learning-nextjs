@@ -1,6 +1,9 @@
 
 @baseUrl = Http://localhost:3000
-@authToken = {{authenticate.response.body.accessToken}}
+@authToken = {{authenticate.response.body.accesToken}}
+@refreshToken = {{authenticate.response.body.refreshToken}}
+
+
 # Recados
 
 ### lista todos os recados
@@ -10,20 +13,21 @@ GET {{baseUrl}}/recados/
 GET {{baseUrl}}/recados/
 ?limit=10
 &offset=0
-Authorization: Bearer {{authToken}}
+
 
 ###Criar um recado
 POST {{baseUrl}}/recados/
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-  "texto": "15448",
-  "deId": 6,
+  "texto": "voces sao mararilhosooooos",
   "paraId": 8
 }
 
 ### Atualizar Recado
 PATCH {{baseUrl}}/recados/24/
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
@@ -33,30 +37,34 @@ Content-Type: application/json
 
 ### apaga um recado
 DELETE {{baseUrl}}/recados/5/
+Authorization: Bearer {{authToken}}
+
 
 
 ##############################################
 
 
 # Pessoas
-### Lista todas as pessoas
+### LISTAR TODAS AS PESSOAS
 GET {{baseUrl}}/pessoas/
 ?limit=10
 &offset=0
 Authorization: Bearer {{authToken}}
-### Lista apenas uma pessoa
+### LISTAR APENAS UMA PESSOA
 GET {{baseUrl}}/pessoas/8/
-### Cria uma pessoa
+Authorization: Bearer {{authToken}}
+### CRIAR UMA PESSOA
 POST {{baseUrl}}/pessoas/
 Content-Type: application/json
 
 {
-    "email": "oli.bruna33@gmail.com",
+    "email": "oli.bruna79@gmail.com",
     "password": "23505",
     "nome": "Bruna"
 }
-### Atualizar Pessoa
+### ATUALIZAR UMA PESSOA
 PATCH {{baseUrl}}/pessoas/8/
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
@@ -65,8 +73,9 @@ Content-Type: application/json
  
 }
 
-### apaga a pessoa
-DELETE {{baseUrl}}/pessoas/3/
+### APAGAR UMA PESSOA
+DELETE {{baseUrl}}/pessoas/4/
+Authorization: Bearer {{authToken}}
 
 
 
@@ -74,7 +83,7 @@ DELETE {{baseUrl}}/pessoas/3/
 
 
 
-#
+###############################################
 
 
 # AUTH
@@ -96,30 +105,19 @@ Content-Type: application/json
 
 
 
-#
+###################################################
 
 
 
 
+### Re-Autenticação
+# @name reAuthenticate
+POST {{baseUrl}}/auth/refresh/
+Content-Type: application/json
+
+{
+    "refreshToken": "{{refreshToken}}"
+}
 
 
-### Exemplo de Rota
-
-# @name ExemplodeRota
-GET  {{baseUrl}}/home/exemplo/
-
-
-### AppControllerGetHello
-
-# @name AppControllerGetHello
-GET  {{baseUrl}}/home/hello/
-
-### Conceitos Manual Controller Home
-
-# @name ConceitosManualControllerHome
-GET  {{baseUrl}}/conceitos-manual/
-
-### Conceitos Automatico Controller Home
-
-# @name ConceitosAutomaticoControllerHome
-GET  {{baseUrl}}/conceitos-automatico/
+#####################################################3
