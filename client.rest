@@ -58,7 +58,7 @@ POST {{baseUrl}}/pessoas/
 Content-Type: application/json
 
 {
-    "email": "oli.bruna79@gmail.com",
+    "email": "oli.bruna59@gmail.com",
     "password": "23505",
     "nome": "Bruna"
 }
@@ -111,7 +111,7 @@ Content-Type: application/json
 
 
 ### Re-Autenticação
-# @name reAuthenticate
+# @name authenticate
 POST {{baseUrl}}/auth/refresh/
 Content-Type: application/json
 
