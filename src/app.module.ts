@@ -8,6 +8,8 @@ import { ConfigModule, ConfigService, ConfigType } from '@nestjs/config';
 import * as Joi from '@hapi/joi';
 import appConfig from './app.config';
 import { AuthModule } from './auth/auth.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import * as path from 'path';
 
 @Module({
 
@@ -30,6 +32,10 @@ import { AuthModule } from './auth/auth.module';
           synchronize: appConfigurations.database.synchronize,
         };
       },
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: path.resolve(__dirname, '..', 'pictures'),
+      serveRoot: '/pictures',
     }),
     RecadosModule,
     PessoasModule,

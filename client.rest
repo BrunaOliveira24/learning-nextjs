@@ -58,7 +58,7 @@ POST {{baseUrl}}/pessoas/
 Content-Type: application/json
 
 {
-    "email": "oli.bruna59@gmail.com",
+    "email": "oli.bruna559@gmail.com",
     "password": "23505",
     "nome": "Bruna"
 }
@@ -120,4 +120,22 @@ Content-Type: application/json
 }
 
 
-#####################################################3
+#####################################################
+
+# Upload
+### Foto da pessoa
+POST {{baseUrl}}/pessoas/upload-picture/
+Authorization: Bearer {{authToken}}
+Content-Type: multipart/form-data; boundary=----BoundaryDelimitadorHttp
+
+------BoundaryDelimitadorHttp
+Content-Disposition: form-data; name="file"; filename="bruxinha.jpeg"
+Content-Type: image/jpeg
+
+< ./dev/images/bruxinha.jpeg
+------BoundaryDelimitadorHttp--
+
+
+### Ver foto
+GET {{baseUrl}}/pictures/17.jpeg
+

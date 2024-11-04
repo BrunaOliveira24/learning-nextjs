@@ -27,11 +27,7 @@ export class RoutePolicyGuard implements CanActivate {
       );
     }
     const { pessoa }: { pessoa: Pessoa } = tokenPayload;
-    if (!pessoa.routePolicies.includes(routePolicyRequired)) {
-      throw new UnauthorizedException(
-        `Usuário não tem permissão ${routePolicyRequired}`,
-      );
-    }
+    
   
     return true;
   }
