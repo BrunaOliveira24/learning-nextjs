@@ -4,26 +4,45 @@ import { AppService } from './app.service';
 import { RecadosModule } from './recados/recados.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PessoasModule } from './pessoas/pessoas.module';
-
+import { ConfigModule, ConfigService, ConfigType } from '@nestjs/config';
+import * as Joi from '@hapi/joi';
+import appConfig from './app.config';
+import { AuthModule } from './auth/auth.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import * as path from 'path';
 
 @Module({
 
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      database: 'postgres',
-      password: '123456',
-      autoLoadEntities: true, //carrega entidades sem precisar especifica-las
-      synchronize: true, //sicroniza com o db nao deve ser usado em produção
-      
+    ConfigModule.forRoot(),
+    ConfigModule.forFeature(appConfig),
+    TypeOrmModule.forRootAsync({
+
+      imports: [ConfigModule.forFeature(appConfig)],
+      inject: [appConfig.KEY],
+      useFactory: async (appConfigurations: ConfigType <typeof appConfig>) =>{
+        return{
+          type: appConfigurations.database.type,
+          host: appConfigurations.database.host,
+          port: appConfigurations.database.port,
+          username: appConfigurations.database.username,
+          database: appConfigurations.database.database,
+          password: appConfigurations.database.password,
+          autoLoadEntities: appConfigurations.database.autoLoadEntities,
+          synchronize: appConfigurations.database.synchronize,
+        };
+      },
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: path.resolve(__dirname, '..', 'pictures'),
+      serveRoot: '/pictures',
     }),
     RecadosModule,
     PessoasModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
+  exports: [],
 })
 export class AppModule {}

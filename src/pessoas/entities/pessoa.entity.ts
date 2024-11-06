@@ -30,6 +30,12 @@ export class Pessoa {
     recadosEnviados: Recado[]
 
     @OneToMany(()=>Recado, recado => recado.para)
-    recadosRecebidos: Recado[]
+    recadosRecebidos: Recado[];
+
+    @Column({default:true})
+    active: boolean;
+
+    @Column({ default: '' })
+    picture: string;
 
 }

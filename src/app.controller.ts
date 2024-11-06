@@ -1,10 +1,22 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Inject } from '@nestjs/common';
 import { AppService } from './app.service';
+import appConfig from './app.config';
+import { ConfigType } from '@nestjs/config';
 
 @Controller('home')
 export class AppController {
-  getHello(): any {
-    throw new Error('Method not implemented.');
+
+  constructor(
+    private readonly appService: AppService,
+    @Inject(appConfig.KEY)
+    private readonly appConfiguration: ConfigType<typeof appConfig>,
+  ) {}
+
+  getHello(): string {
+    const retorno = 'Retorno';
+    return retorno;
   }
-  constructor(private readonly appService: AppService) {}
+  exemplo(){
+    return this.appService.solucionaExemplo();
+  }
 }
