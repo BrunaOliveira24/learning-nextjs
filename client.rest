@@ -18,8 +18,8 @@ Content-Type: application/json
 
 {
   "texto": "15448",
-  "deId": 6,
-  "paraId": 8
+  "deId": 1,
+  "paraId": 2
 }
 
 ### Atualizar Recado
@@ -50,7 +50,7 @@ POST {{baseUrl}}/pessoas/
 Content-Type: application/json
 
 {
-    "email": "oli.bruna06@gmail.com",
+    "email": "oli.bruna08@gmail.com",
     "password": "23505",
     "nome": "Bruna"
 }
