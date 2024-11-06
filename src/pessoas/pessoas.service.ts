@@ -90,7 +90,7 @@ export class PessoasService {
       throw new NotFoundException('Pessoa não encontrada')
     }
 
-    if(pessoa.id!== tokenPayLoad.sub){
+    if(!pessoa){
       throw new ForbiddenException("Voce nao é essa pessoa");
     }
 
