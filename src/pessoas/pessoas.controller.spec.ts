@@ -1,4 +1,4 @@
-import { PessoasController } from "../pessoas.controller";
+import { PessoasController } from "./pessoas.controller";
 
 
 describe('PessoasController', () => {

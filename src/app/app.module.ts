@@ -1,23 +1,22 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { RecadosModule } from './recados/recados.module';
+import { AppService } from '../app.service';
+import { RecadosModule } from '../recados/recados.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PessoasModule } from './pessoas/pessoas.module';
+import { PessoasModule } from '../pessoas/pessoas.module';
 import { ConfigModule, ConfigService, ConfigType } from '@nestjs/config';
 import * as Joi from '@hapi/joi';
 import appConfig from './app.config';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from '../auth/auth.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import * as path from 'path';
 
 @Module({
 
   imports: [
-    ConfigModule.forRoot(),
+  
     ConfigModule.forFeature(appConfig),
     TypeOrmModule.forRootAsync({
-
       imports: [ConfigModule.forFeature(appConfig)],
       inject: [appConfig.KEY],
       useFactory: async (appConfigurations: ConfigType <typeof appConfig>) =>{

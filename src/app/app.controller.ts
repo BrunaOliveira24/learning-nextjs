@@ -1,6 +1,6 @@
 import { Controller, Inject } from '@nestjs/common';
 import { AppService } from './app.service';
-import appConfig from './app.config';
+import appConfig from './app/app.config';
 import { ConfigType } from '@nestjs/config';
 
 @Controller('home')
