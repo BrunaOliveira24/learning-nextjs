@@ -33,6 +33,7 @@
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "nodemailer": "^6.9.16",
     "pg": "^8.13.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
@@ -79,7 +80,7 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
- "coverageDirectory": "../coverage",
+    "coverageDirectory": "../coverage",
     "testEnvironment": "node",
     "moduleNameMapper": {
       "^src/(.*)$": "<rootDir>/$1"

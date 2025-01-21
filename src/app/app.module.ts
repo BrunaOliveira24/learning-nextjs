@@ -1,34 +1,34 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from '../app.service';
 import { RecadosModule } from '../recados/recados.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PessoasModule } from '../pessoas/pessoas.module';
 import { ConfigModule, ConfigService, ConfigType } from '@nestjs/config';
 import * as Joi from '@hapi/joi';
-import appConfig from './app.config';
 import { AuthModule } from '../auth/auth.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import * as path from 'path';
+import globalConfig from 'src/global-config/global.config';
+import { AppService } from './app.service';
 
 @Module({
 
   imports: [
   
-    ConfigModule.forFeature(appConfig),
+    ConfigModule.forFeature(globalConfig),
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule.forFeature(appConfig)],
-      inject: [appConfig.KEY],
-      useFactory: async (appConfigurations: ConfigType <typeof appConfig>) =>{
+      imports: [ConfigModule.forFeature(globalConfig)],
+      inject: [globalConfig.KEY],
+      useFactory: async (globalConfigurations: ConfigType <typeof globalConfig>) =>{
         return{
-          type: appConfigurations.database.type,
-          host: appConfigurations.database.host,
-          port: appConfigurations.database.port,
-          username: appConfigurations.database.username,
-          database: appConfigurations.database.database,
-          password: appConfigurations.database.password,
-          autoLoadEntities: appConfigurations.database.autoLoadEntities,
-          synchronize: appConfigurations.database.synchronize,
+          type: globalConfigurations.database.type,
+          host: globalConfigurations.database.host,
+          port: globalConfigurations.database.port,
+          username: globalConfigurations.database.username,
+          database:globalConfigurations.database.database,
+          password: globalConfigurations.database.password,
+          autoLoadEntities:globalConfigurations.database.autoLoadEntities,
+          synchronize: globalConfigurations.database.synchronize,
         };
       },
     }),

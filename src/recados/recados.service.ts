@@ -8,6 +8,7 @@ import { CreateRecadoDto } from './DTO/create-recado.dto';
 import { UpdateRecadoDto } from './DTO/update-recado.dto';
 import { RecadosUtils } from './recados.utils';
 import { TokenPayloadDto } from 'src/auth/DTO/token-payload.dto';
+import { EmailService } from 'src/email/email.service';
 
 @Injectable()
 export class RecadosService {
@@ -16,6 +17,7 @@ export class RecadosService {
     private readonly recadoRepository: Repository<Recado>,
     private readonly pessoasService: PessoasService,
     private readonly recadoUtils: RecadosUtils,
+    private readonly emailService: EmailService,
   ) {}
 
   throwNotFoundError() {
@@ -91,8 +93,10 @@ export class RecadosService {
       data: new Date(),
     };
 
-    const recado = await this.recadoRepository.create(novoRecado);
+    const recado = this.recadoRepository.create(novoRecado);
     await this.recadoRepository.save(recado);
+
+    await this.emailService.sendEmail()
 
     return {
       ...recado,
